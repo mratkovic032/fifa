@@ -1,0 +1,18 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+
+<div class="container">
+    <div class="jumbotron landing-jumbotron">
+        <h1 class="display-4">Fifa World Cup Russia 2018!</h1>
+        <p class="lead">Job application assignment for Diwanee Serbia, a world cup application powered by PHP.</p>
+        <hr class="my-4">
+        <p>To find out more about teams, players, matches and statistics click below.</p>
+        <a class="btn btn-primary btn-lg" href="{{ BASE }}home" role="button">Learn more</a>        
+        <button id="initBtn" type="button" class="btn btn-secondary btn-lg" onclick="init();">Import data</button>
+    </div>
+</div>
+
+{{ error }}
+
+{% endblock %}

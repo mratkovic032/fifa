@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fifa Statistics</title>
+        <meta charset="utf-8">        
+        <link rel="stylesheet" href="{{ BASE }}assets/libs/bootstrap/dist/css/bootstrap.min.css"> 
+        <link rel="stylesheet" href="{{ BASE }}assets/libs/@fortawesome/fontawesome-free/css/all.css">
+        <link rel="stylesheet" href="{{ BASE }}assets/css/main.css">         
+    </head>
+
+    <body>        
+        <div>
+            <main>
+                {% block main %}
+                {% endblock %}
+            </main>
+        </div>    
+
+        <script src="{{ BASE }}assets/libs/jquery/dist/jquery.min.js"></script>
+        <script src="{{ BASE }}assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{{ BASE }}assets/js/main.js"></script>
+        <script src="{{ BASE }}assets/js/init.js"></script>
+        <script>const BASE = '{{ BASE }}';</script>
+    </body>
+</html>

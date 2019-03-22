@@ -1,0 +1,68 @@
+{% extends "_global/index.html" %}
+
+{% block main %}    
+    <h3 class="text-center">{{ error }}</h3>
+
+    <div class="container">
+
+        <a class="btn btn-secondary btn-lg" href="{{ BASE }}home" role="button"><i class="fas fa-arrow-left"></i></a><br>
+        <a class="json-link" href="{{ BASE }}teams/results">View JSON teams and its results</a>
+
+        <div class="accordion" id="accordion-teams">
+            {% for team in teams %}
+                <div class="card">
+                    <div class="card-header" id="heading{{ team.team_id }}">
+                        <h4 class="mb-0 text-center">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse{{ team.team_id }}" aria-expanded="true" aria-controls="collapse{{ team.team_id }}">
+                                {{ team.country }}
+                            </button>
+                        </h4>
+                    </div>
+
+                    <div id="collapse{{ team.team_id }}" class="collapse" aria-labelledby="heading{{ team.team_id }}" data-parent="#accordion-teams">
+                        <div class="card-body">
+                            <div class="team-players table-responsive">
+                                <table class="table table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>NAME</th>
+                                            <th>CAPTAIN</th>
+                                            <th>SHIRT NUMBER</th>
+                                            <th>POSITION</th>
+                                            <th>STARTING ELEVEN</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody id="team-players">
+                                        {% for player in team.players %}
+                                            <tr>
+                                                <td>{{ player.name }}</td>
+                                                <td>
+                                                    {% if player.captain == 1 %}
+                                                        true
+                                                    {% else %}
+                                                        false
+                                                    {% endif %}
+                                                </td>
+                                                <td>{{ player.shirt_number }}</td>
+                                                <td>{{ player.position }}</td>
+                                                <td>
+                                                    {% if player.starting_eleven == 1 %}
+                                                        Starting eleven
+                                                    {% else %}    
+                                                        Substitute
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+
+    <h3 class="text-center">{{ error }}</h3>
+    <div class="container">
+
+        <a class="btn btn-secondary btn-lg mb-3" href="{{ BASE }}home" role="button"><i class="fas fa-arrow-left"></i></a>
+        
+        <input class="form-control" id="player-keywords" type="text" placeholder="Search..."> 
+        <div class="players table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>NAME</th>
+                        <th>CAPTAIN</th>
+                        <th>SHIRT NUMBER</th>
+                        <th>POSITION</th>
+                        <th>TEAM</th>
+                    </tr>
+                </thead>
+
+                <tbody id="player-table">
+                    {% for player in players %}
+                        <tr>
+                            <td>{{ player.name|escape }}</td>
+                            <td>{% if player.captain == 1 %}
+                                    true
+                                {% else %}
+                                    false
+                                {% endif %}
+                            </td>
+                            <td>{{ player.shirt_number }}</td>
+                            <td>{{ player.position }}</td>
+                            <td>{{  player.country }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% for player in players %}
+        
+    {% endfor %}  
+    
+    
+
+{% endblock %}

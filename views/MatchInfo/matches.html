@@ -1,0 +1,37 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+    <h3 class="text-center">{{ error }}</h3>        
+
+    <div class="container">
+
+        <a class="btn btn-secondary btn-lg" href="{{ BASE }}home" role="button"><i class="fas fa-arrow-left"></i></a><br>
+        <a class="json-link" href="{{ BASE }}matches/orderbytemp">View JSON matches ordered by temp descending</a>        
+
+        <div class="accordion" id="accordion-matches">
+            {% for match in matches %}
+                <div class="card">
+                    <div class="card-header" id="heading{{ match.fifa_id }}">
+                        <h4 class="mb-0 text-center">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse{{ match.fifa_id }}" aria-expended="true" aria-controls="collapse{{ match.fifa_id }}">
+                                {{ match.home_team_country }} {{ match.home_team_goals }} - {{ match.away_team_goals }} {{ match.away_team_country }}
+                            </button>
+                        </h4>
+                    </div>
+
+                    <div id="collapse{{ match.fifa_id }}" class="collapse" aria-labelledby="heading{{ match.fifa_id }}" data-parent="#accordion-matches">
+                        <div class="card-body">
+                            Date: {{ match.datetime|date('d M Y - H:i') }}<br>
+                            Time: {{ match.time|capitalize }}<br>
+                            Stage: {{ match.stage_name}}<br>
+                            Location: {{ match.location }}<br>
+                            Venue: {{ match.venue }}<br>
+                            Attendance: {{ match.attendance }}<br>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>    
+
+{% endblock %}

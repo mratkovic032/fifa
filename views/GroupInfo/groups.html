@@ -1,0 +1,61 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+    <h3 class="text-center">{{ error }}</h3>
+    <div class="container">
+
+        <a class="btn btn-secondary btn-lg mb-3" href="{{ BASE }}home" role="button"><i class="fas fa-arrow-left"></i></a>
+
+        <div clas="accordion" id="accordion-groups">
+            {% for group in groups %}
+                <div class="card">
+                    <div class="card-header" id="heading{{ group.group_letter }}">
+                        <h4 class="mb-0 text-center">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse{{ group.group_letter }}" aria-expended="true" aria-controls="collapse{{ group.group_letter }}">
+                                Group {{ group.group_letter }}
+                            </button>
+                        </h4>
+                    </div>
+
+                    <div id="collapse{{ group.group_letter }}" class="collapse" aria-labelledby="heading{{ group.group_letter }}" data-parent="#accordion-groups">
+                        <div class="card-body">                            
+                            <div class="group-teams table-responsive">
+                                <table class="table table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>COUNTRY</th>
+                                            <th>MP</th>
+                                            <th>W</th>
+                                            <th>D</th>
+                                            <th>L</th>
+                                            <th>GF</th>
+                                            <th>GA</th>
+                                            <th>+/-</th>
+                                            <th>PTS</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        {% for team in group.teams %}
+                                            <tr>
+                                                <td>{{ team.country }}</td>
+                                                <td>{{ team.games_played }}</td>
+                                                <td>{{ team.wins }}</td>
+                                                <td>{{ team.draws }}</td>
+                                                <td>{{ team.losses }}</td>
+                                                <td>{{ team.goals_for }}</td>
+                                                <td>{{ team.goals_against }}</td>
+                                                <td>{{ team.goal_differential }}</td>
+                                                <td>{{ team.points }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}    
+        </div>
+    </div>
+{% endblock %}
